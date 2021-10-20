@@ -22,3 +22,6 @@ function Get-PlainTextStringFromHashedSecureString {
     $PlainTextString = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
     return $PlainTextString
 }
+
+# Create credential object
+$Credential = New-Object System.Management.Automation.PSCredential ($StringUserName, $SecureStringPassword)
