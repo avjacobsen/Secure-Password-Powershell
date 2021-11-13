@@ -8,16 +8,16 @@ $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureStri
 $PlainTextString = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
 Write-Host "Your plain text string: $PlainTextString"
 
-# Get Password from hashed secure string function
-function Get-PlainTextStringFromHashedSecureString {
+# Get Password from encrypted string function
+function Get-DecryptedString {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
         [String]
-        $HashedSecureString
+        $EncryptedString
     )
-    # Get Password from hashed secure string
-    $SecureString = $HashedSecureString | ConvertTo-SecureString
+    # Get Password from encrypted string
+    $SecureString = $EncryptedString | ConvertTo-SecureString
     $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureString)
     $PlainTextString = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
     return $PlainTextString
